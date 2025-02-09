@@ -5,3 +5,18 @@
 @theme {
   --font-roboto: "Roboto Condensed", sans-serif;
 }
+
+.bg-landing::before {
+  content: "";
+  background-image: url("../assets/background.jpg"); /* Adjust the path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust the opacity as needed */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
