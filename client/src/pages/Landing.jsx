@@ -2,10 +2,11 @@ import React from "react";
 import PythonSVG from "../assets/python_logo.svg";
 import { useNavigate } from "react-router-dom";
 
+//Simple landing page with a call to action button to get started
 const Landing = () => {
   const navigate = useNavigate();
   return (
-    <main className="flex flex-col w-full h-screen">
+    <main className="flex flex-col w-full h-screen mt-24">
       <section className="flex flex-row place-content-center w-full h-screen border-b border-gray-200">
         <div className="flex place-content-center w-1/2">
           <img src={PythonSVG} alt="Python Logo" />

@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
 
+//A reusable NavLink component for Navigation (About, Features, Contact Us)
 const NavLink = ({ href, children }) => {
+  //Takes in href and children as props. href as the link to the section, children as the text
   return (
     <a
       href={href}
@@ -13,13 +14,14 @@ const NavLink = ({ href, children }) => {
   );
 };
 
+//TO DO: Make Exceptionals a link to the landing page
 const Header = () => {
-  const navigate = useNavigate();
   const { userLoggedIn } = useAuth();
   return (
     <nav className="flex flex-row items-center w-full h-24 px-20 py-10 bg-blue-800 text-white">
       <h1 className="text-[2rem] font-bold font-roboto">Exceptionals</h1>
       <div className="flex flex-row w-1/2 items-center ml-auto space-x-10 justify-end">
+        {/*If user is logged in, display "User Logged In." Otherwise, display the NavLink components*/}
         {userLoggedIn ? (
           <p>User Logged In.</p>
         ) : (

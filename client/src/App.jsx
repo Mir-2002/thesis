@@ -4,6 +4,8 @@ import { useRoutes } from "react-router-dom";
 import { AuthProvider } from "./contexts/authContext";
 import Header from "./components/Header";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const routes = [
@@ -14,6 +16,14 @@ function App() {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
     },
   ];
   const routesElement = useRoutes(routes);
