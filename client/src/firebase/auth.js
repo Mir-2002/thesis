@@ -17,6 +17,7 @@ export const doCreateUserWithEmailAndPassword = async (email, password) => {
       email,
       password
     );
+    await signOut(auth);
     return userCredential.user;
   } catch (error) {
     console.error("Error creating user: ", error);

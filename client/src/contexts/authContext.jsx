@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { auth } from "../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import axios from "axios";
 
 // Create a context to store the user's authentication state
 const AuthContext = React.createContext();
@@ -26,7 +27,17 @@ export function AuthProvider({ children }) {
   async function initializeUser(user) {
     try {
       if (user) {
-        setCurrentUser({ ...user });
+        console.log("User: ", user);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_ENDPOINT}/api/users/${user.uid}`
+        );
+        console.log("User response: ", response.data);
+        const username = response.data.username;
+        setCurrentUser({
+          uid: user.uid,
+          email: user.email,
+          username: username,
+        });
         setUserLoggedIn(true);
       } else {
         setCurrentUser(null);

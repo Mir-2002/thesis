@@ -41,11 +41,22 @@ const Register = () => {
     try {
       setLoading(true);
       //Make a POST request to the registerEndpoint with the username and email in the request body. If the request is successful, create a new user with the email and password using the doCreateUserWithEmailAndPassword function from the firebase/auth.js file. Reset the form data state variable and set the error state variable to null. Redirect the user to the login page.
+      const user = await doCreateUserWithEmailAndPassword(email, password);
+      console.log("Firebase user: ", user);
+
+      if (!user || !user.uid) {
+        throw new Error("Failed to get UID from Firebase");
+      }
+
+      const uid = user.uid;
+      console.log("Firebase UID: ", uid);
       const response = await axios.post(registerEndpoint, {
+        uid,
         username,
         email,
       });
-      await doCreateUserWithEmailAndPassword(email, password);
+
+      console.log("Backend response: ", response.data);
       setFormData({
         username: "",
         email: "",
@@ -128,8 +139,9 @@ const Register = () => {
               <button
                 type="submit"
                 className="w-1/3 p-3 text-white rounded-lg bg-blue-700 hover:bg-blue-800 text-base font-medium"
+                disabled={loading}
               >
-                Register
+                {loading ? "Loading..." : "Register"}
               </button>
               <p className="text-base">
                 Already have an account? <br />

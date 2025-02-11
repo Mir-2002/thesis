@@ -16,14 +16,14 @@ const NavLink = ({ href, children }) => {
 
 //TO DO: Make Exceptionals a link to the landing page
 const Header = () => {
-  const { userLoggedIn } = useAuth();
+  const { currentUser, userLoggedIn } = useAuth();
   return (
     <nav className="flex flex-row items-center w-full h-24 px-20 py-10 bg-blue-800 text-white">
       <h1 className="text-[2rem] font-bold font-roboto">Exceptionals</h1>
       <div className="flex flex-row w-1/2 items-center ml-auto space-x-10 justify-end">
         {/*If user is logged in, display "User Logged In." Otherwise, display the NavLink components*/}
         {userLoggedIn ? (
-          <p>User Logged In.</p>
+          <p>Welcome, {currentUser.username}</p>
         ) : (
           <>
             <NavLink href="#about">About</NavLink>
